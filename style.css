@@ -13,3 +13,51 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  margin:0;
+}
+
+.products{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem,1fr));
+  gap: 20px;
+}
+
+.products > .productElement{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+
+.products > .productElement > h3{
+  margin-top: 0;
+  text-align: center;
+}
+
+.products > .productElement:hover{
+  cursor: pointer;
+  box-shadow: rgb(0, 105, 167) 0px 0px 10px 0px;;
+}
+
+.products > .productElement > .image-container{
+  flex-grow: 1; 
+}
+
+.image-container > img{
+  width: 100%;
+  /*height: auto;*/
+  margin: 0 auto;
+}
+
+.products > .productElement > p > span{
+  font-weight: bold;
+}

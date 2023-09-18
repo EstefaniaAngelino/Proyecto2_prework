@@ -1,20 +1,28 @@
 import "./style.css";
-// Comentario 1: Nombre de array de productS: product -> products
 import { products } from "./constants";
 
 const storeElements = document.querySelector('.products');
 
-// Comentario 2: Si función con llave, entonces usar "return", sino sacar llaves
+const setUpStars = (score) => {
+
+  let starContainer = [];
+  
+  for (let i=0; i<score; i++){ 
+    starContainer.push(`<span class="stars">⭐️</span>`);
+  }
+  return starContainer.join(' '); 
+};
+
 const getProductTemplate = (product) => 
   `
-    <div class="product">
+    <div class="productElement">
       <div class="image-container">
-        <img src="${products.image}" alt="${products.name}"></img>
+        <img src="${product.image}" alt="${product.name}"></img>
       </div>
-      <h3>${products.name}</h3>
-      <p>${products.price}</p>
-      <span>${products.stars}</span>
-      <p>${products.seller}</p>
+      <h3>${product.name}</h3>
+      <p>${product.price}</p>
+      <div class="stars-container"> ${setUpStars(product.stars)} (${product.reviews})</div>
+      <p>Vendido por: <span>${product.seller}</span></p>
     </div>
   `;
 

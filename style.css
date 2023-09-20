@@ -23,6 +23,42 @@ body{
   margin:0;
 }
 
+.navBar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.87);
+  padding: 0.25rem;
+}
+
+.navBar > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+ 
+.logo{
+  height: 20px;
+  margin-left: 15px;
+}
+
+.color-icono{
+  color: aliceblue;
+}
+
+#menu:hover{
+  cursor: pointer;
+}
+
+.filters{
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px 10px  ;
+}
+
 .products{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem,1fr));
@@ -60,4 +96,8 @@ body{
 
 .products > .productElement > p > span{
   font-weight: bold;
+}
+
+filter-container{
+  display: block;
 }

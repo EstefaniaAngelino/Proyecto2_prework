@@ -91,7 +91,7 @@ priceFilterDiv.className='filter-container';
 priceFilterDiv.innerHTML = `
   <label for="price-filter">Precio máx:</label>
   <input type="number" name="price-filter" class="price-filter">
-  <button class="searcher-button">Buscar</button>
+  <button class="searcher-button">🔍</button>
 `;
 searchElement.appendChild(priceFilterDiv); 
 const button  = document.querySelector('.searcher-button');
@@ -136,3 +136,10 @@ const setUpProduct = (productsArray) => {
 };
 
 setUpProduct(products);
+
+const footerContainer = document.createElement('footer');
+footerContainer.className = 'footer';
+footerContainer.innerHTML = `
+  <p> PC Componentes y Multimedia SLU CIF B73347494. AVDA Europa, Parcela 2-5 y 2-6. Polígono industrial Las Salinas, 30840, Alhama de Murcia, Murcia. ESPAÑA.<p>
+`;
+principalContainer.insertAdjacentElement("afterend",footerContainer);

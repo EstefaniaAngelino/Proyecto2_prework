@@ -98,6 +98,37 @@ body{
   font-weight: bold;
 }
 
-filter-container{
+.filter-container{
   display: block;
+}
+
+@media (min-width: 768px){
+  #app {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px){
+  .filters{
+    display: block;
+    justify-content: center;
+    text-align: justify;
+  }
+}
+@media (min-width: 768px){
+.products {
+  max-width: 1200px; /* Establece un ancho máximo */
+  margin: 0 auto; /* Centra horizontalmente */
+}
+}
+.footer {
+  text-align:center;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.87);
+}
+
+.footer > p {
+  padding-top: 10px;
 }

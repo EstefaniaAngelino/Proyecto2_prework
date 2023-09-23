@@ -4,38 +4,60 @@ import { products } from "./constants";
 const storeElements = document.querySelector('.products');
 let filtredProducts = products.slice();
 
-const onOptionSelected = (event) => {
-  const selectedSeller = event.target.value;
-  const MaxPriceInput = document.querySelector('.price-filter');
-  const selectedMaxPrice = MaxPriceInput.value;
-  
-  if (selectedMaxPrice === ""){
-    filtredProducts = products.filter((product) => product.seller === selectedSeller);
-  }else {
-    filtredProducts = products.filter((product) => product.seller === selectedSeller && product.price <= selectedMaxPrice);
-  };
-  
-  
-  storeElements.innerHTML = '';
-  setUpProduct(filtredProducts);
-  };
-
-const onClick = (event) => {
+const filterProducts = () => {
   const sellerFilter = document.querySelector('.filter');
-  const selectedSeller = sellerFilter.value;
-  const MaxPriceInput = document.querySelector('.price-filter');
-  const selectedMaxPrice = MaxPriceInput.value;
+  const seller = sellerFilter.value;
+  const maxPriceInput = document.querySelector('.price-filter');
+  const maxPrice = maxPriceInput.value;
 
-  if(sellerFilter[0]){
-    filtredProducts = products.filter((product) => product.price <= selectedMaxPrice);
-  }else{
-    filtredProducts = products.filter((product) => product.seller === selectedSeller && product.price <= selectedMaxPrice);
+  if (maxPrice === "") {
+    filtredProducts = products.filter((product) => product.seller === seller);
+  } else if (seller === " ") {
+    filtredProducts = products.filter((product) => product.price <= maxPrice);
+  } else {
+    filtredProducts = products.filter((product) => product.seller === seller && product.price <= maxPrice);
   };
-
 
   storeElements.innerHTML = '';
   setUpProduct(filtredProducts);
-};
+}
+
+// const onOptionSelected = (event) => {
+  // const selectedSeller = event.target.value;
+  // const maxPriceInput = document.querySelector('.price-filter');
+  // const selectedMaxPrice = maxPriceInput.value;
+
+  // filterProducts();
+
+  // if (selectedMaxPrice === ""){
+  //   filtredProducts = products.filter((product) => product.seller === selectedSeller);
+  // }else {
+  //   filtredProducts = products.filter((product) => product.seller === selectedSeller && product.price <= selectedMaxPrice);
+  // };
+
+
+  // storeElements.innerHTML = '';
+  // setUpProduct(filtredProducts);
+  // };
+
+// const onClick = (event) => {
+  // const sellerFilter = document.querySelector('.filter');
+  // const selectedSeller = sellerFilter.value;
+  // const maxPriceInput = document.querySelector('.price-filter');
+  // const selectedMaxPrice = maxPriceInput.value;
+
+  // filterProducts()
+
+  // if(selectedSeller===" "){
+  //   filtredProducts = products.filter((product) => product.price <= selectedMaxPrice);
+  // }else{
+  //   filtredProducts = products.filter((product) => product.seller === selectedSeller && product.price <= selectedMaxPrice);
+  // };
+
+
+  // storeElements.innerHTML = '';
+  // setUpProduct(filtredProducts);
+// };
 
 const onClickReset = (event) => {
   setUpProduct(products);
@@ -79,12 +101,12 @@ sellerSearcher.innerHTML = `
   <option value="Infopavon">Infopavon</option>;
   <option value="Locura informática">Locura informática</option>;
 `;
-searchElement.appendChild(sellerSearcherDiv); 
-sellerSearcherDiv.appendChild(sellerLabel); 
-sellerSearcherDiv.appendChild(sellerSearcher); 
+searchElement.appendChild(sellerSearcherDiv);
+sellerSearcherDiv.appendChild(sellerLabel);
+sellerSearcherDiv.appendChild(sellerSearcher);
 
 
-sellerSearcher.addEventListener('change',onOptionSelected);
+sellerSearcher.addEventListener('change',filterProducts);
 
 const priceFilterDiv = document.createElement('div');
 priceFilterDiv.className='filter-container';
@@ -93,14 +115,14 @@ priceFilterDiv.innerHTML = `
   <input type="number" name="price-filter" class="price-filter">
   <button class="searcher-button">🔍</button>
 `;
-searchElement.appendChild(priceFilterDiv); 
+searchElement.appendChild(priceFilterDiv);
 const button  = document.querySelector('.searcher-button');
-button.addEventListener('click',onClick);
+button.addEventListener('click',filterProducts);
 
 const cleanFiltersButton = document.createElement('button');
 cleanFiltersButton.textContent='Limpiar Filtros';
 cleanFiltersButton.className='clean';
-searchElement.appendChild(cleanFiltersButton); 
+searchElement.appendChild(cleanFiltersButton);
 const resetSearchButton = document.querySelector('.clean');
 resetSearchButton.addEventListener('click', onClickReset);
 
@@ -108,14 +130,14 @@ resetSearchButton.addEventListener('click', onClickReset);
 const setUpStars = (score) => {
 
   let starContainer = [];
-  
-  for (let i=0; i<score; i++){ 
+
+  for (let i=0; i<score; i++){
     starContainer.push(`<span class="stars">⭐️</span>`);
   }
-  return starContainer.join(' '); 
+  return starContainer.join(' ');
 };
 
-const getProductTemplate = (product) => 
+const getProductTemplate = (product) =>
   `
     <div class="productElement">
       <div class="image-container">
@@ -129,7 +151,7 @@ const getProductTemplate = (product) =>
   `;
 
 const setUpProduct = (productsArray) => {
-  productsArray.forEach((product) => { 
+  productsArray.forEach((product) => {
     const template = getProductTemplate(product);
     storeElements.innerHTML += template;
   });
